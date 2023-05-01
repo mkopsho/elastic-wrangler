@@ -1,10 +1,10 @@
 # ESWrangler
-A small Python CLI that indexes the contents of a file into an Elasticsearch index.
+A small Python CLI that indexes the contents of a nginx log file into an Elasticsearch index.
 
 ```
 usage: python es_wrangler [-h] filename index api username password
 
-Indexes the contents of a file into an Elasticsearch index
+Indexes the contents of a nginx file into an Elasticsearch index
 
 positional arguments:
   filename    the json file with your data
