@@ -1,5 +1,8 @@
 # ESWrangler
 A small Python CLI that indexes the contents of a file into an Elasticsearch index.
+<p align="center">
+  <img src=https://user-images.githubusercontent.com/33524375/235536304-91961886-032b-4593-bf9b-28a5be1a1d3d.png
+</p>
 
 ```
 usage: python es_wrangler [-h] filename index api username password
