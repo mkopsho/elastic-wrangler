@@ -27,7 +27,7 @@ username = args.username
 password = args.password
 
 
-# read, transform, and index the data from the local file
+# read, transform, and index the data from the local nginx file
 def transform_and_index_data(filename, index):
     data = []
     with open(filename) as file:

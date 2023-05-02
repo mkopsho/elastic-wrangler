@@ -31,6 +31,7 @@ Optionally, run the demo ES cluster:
 ```
 docker compose up
 ```
+
 # Execution
 This will index the sample `nginx` logs provided in this repo into the `nginx` index in your local Elasticsearch cluster. Notice that you will have to [add minimal security to your cluster](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/security-minimal-setup.html) to utilize usernames and passwords.
 ```
