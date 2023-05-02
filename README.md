@@ -43,4 +43,4 @@ Navigate to `http://localhost:5601` to access Kibana and play with the data.
   <img src=https://user-images.githubusercontent.com/33524375/235536304-91961886-032b-4593-bf9b-28a5be1a1d3d.png
 </p>
 
-Bye, cowpoke!
+<p align="center">Bye, cowpoke!</p>
