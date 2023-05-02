@@ -27,6 +27,26 @@ username = args.username
 password = args.password
 
 
+# create index if doesn't exist
+def create_index(elastic_client, index):
+    elastic_client.indices.create(
+        index=index,
+        body={
+            "mappings": {
+                "properties": {
+                    "time": {"type": "date"},
+                    "remote_ip": {"type": "text"},
+                    "remote_user": {"type": "text"},
+                    "request": {"type": "text"},
+                    "response": {"type": "long"},
+                    "bytes": {"type": "long"},
+                    "agent": {"type": "text"},
+                }
+            }
+        }
+    )
+
+
 # read, transform, and index the data from the local nginx file
 def transform_and_index_data(filename, index):
     data = []
@@ -55,6 +75,7 @@ def main():
         hosts=[api],
         basic_auth=(username, password),
     )
+    create_index(elastic_client, index)
     helpers.bulk(
         elastic_client, transform_and_index_data(filename, index), stats_only=True
     )
