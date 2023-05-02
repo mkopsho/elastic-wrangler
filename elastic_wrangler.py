@@ -1,7 +1,7 @@
 import argparse
 import json
 from datetime import datetime
-from elasticsearch import Elasticsearch
+from elasticsearch import Elasticsearch, exceptions
 from elasticsearch import helpers
 
 # create a simple cli with argparse
@@ -29,22 +29,27 @@ password = args.password
 
 # create index if doesn't exist
 def create_index(elastic_client, index):
-    elastic_client.indices.create(
-        index=index,
-        body={
-            "mappings": {
-                "properties": {
-                    "time": {"type": "date"},
-                    "remote_ip": {"type": "text"},
-                    "remote_user": {"type": "text"},
-                    "request": {"type": "text"},
-                    "response": {"type": "long"},
-                    "bytes": {"type": "long"},
-                    "agent": {"type": "text"},
+    try:
+        print(f"finding `{index}` index...")
+        elastic_client.indices.get(index=index)
+    except exceptions.NotFoundError:
+        print(f"creating `{index}` index...")
+        elastic_client.indices.create(
+            index=index,
+            body={
+                "mappings": {
+                    "properties": {
+                        "time": {"type": "date"},
+                        "remote_ip": {"type": "text"},
+                        "remote_user": {"type": "text"},
+                        "request": {"type": "text"},
+                        "response": {"type": "long"},
+                        "bytes": {"type": "long"},
+                        "agent": {"type": "text"},
+                    }
                 }
-            }
-        }
-    )
+            },
+        )
 
 
 # read, transform, and index the data from the local nginx file
